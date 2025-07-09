@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Photobooth K-Pop</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://i.imgur.com/CvGi5bB.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+    }
+    .container {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      margin: 30px auto;
+      border-radius: 10px;
+      max-width: 500px;
+    }
+    video, canvas {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    button, a {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      background: #28a745;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📸 K-POP Photobooth</h1>
+    <p>Pilih gaya terbaikmu bareng BTS, EXO, atau ENHYPEN!</p>
+    <video id="video" autoplay playsinline></video><br>
+    <button onclick="takePhoto()">Ambil Foto</button><br><br>
+    <canvas id="canvas"></canvas><br>
+    <a id="download" download="photo.png">Download Foto</a>
+  </div>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const download = document.getElementById('download');
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => video.srcObject = stream)
+      .catch(err => alert('Kamera tidak bisa dibuka: ' + err));
+
+    function takePhoto() {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      ctx.drawImage(video, 0, 0);
+      download.href = canvas.toDataURL();
+    }
+  </script>
+</body>
+</html>
