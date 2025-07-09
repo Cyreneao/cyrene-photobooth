@@ -3,19 +3,54 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Photobooth Online</title>
+  <title>Photobooth K-Pop</title>
   <style>
-    body { font-family: Arial; text-align: center; margin: 30px; }
-    video, canvas { max-width: 100%; width: 400px; border-radius: 10px; }
-    button, a { margin-top: 10px; padding: 10px 20px; border: none; background: #28a745; color: white; cursor: pointer; border-radius: 5px; text-decoration: none; display: inline-block; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://i.imgur.com/CvGi5bB.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+    }
+    .container {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      margin: 30px auto;
+      border-radius: 10px;
+      max-width: 500px;
+    }
+    video, canvas {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    button, a {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      background: #28a745;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
-  <h1>📸 Web Photobooth</h1>
-  <video id="video" autoplay playsinline></video><br>
-  <button onclick="takePhoto()">Ambil Foto</button><br><br>
-  <canvas id="canvas"></canvas><br>
-  <a id="download" download="photo.png">Download Foto</a>
+  <div class="container">
+    <h1>📸 K-POP Photobooth</h1>
+    <p>Pilih gaya terbaikmu bareng BTS, EXO, atau ENHYPEN!</p>
+    <video id="video" autoplay playsinline></video><br>
+    <button onclick="takePhoto()">Ambil Foto</button><br><br>
+    <canvas id="canvas"></canvas><br>
+    <a id="download" download="photo.png">Download Foto</a>
+  </div>
 
   <script>
     const video = document.getElementById('video');
