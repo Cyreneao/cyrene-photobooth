@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Photobooth Online</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin: 30px; }
+    video, canvas { max-width: 100%; width: 400px; border-radius: 10px; }
+    button, a { margin-top: 10px; padding: 10px 20px; border: none; background: #28a745; color: white; cursor: pointer; border-radius: 5px; text-decoration: none; display: inline-block; }
+  </style>
+</head>
+<body>
+  <h1>📸 Web Photobooth</h1>
+  <video id="video" autoplay playsinline></video><br>
+  <button onclick="takePhoto()">Ambil Foto</button><br><br>
+  <canvas id="canvas"></canvas><br>
+  <a id="download" download="photo.png">Download Foto</a>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const download = document.getElementById('download');
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => video.srcObject = stream)
+      .catch(err => alert('Kamera tidak bisa dibuka: ' + err));
+
+    function takePhoto() {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      ctx.drawImage(video, 0, 0);
+      download.href = canvas.toDataURL();
+    }
+  </script>
+</body>
+</html>
